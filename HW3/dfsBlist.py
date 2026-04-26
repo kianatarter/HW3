@@ -1,4 +1,5 @@
-
+import time
+start = time.perf_counter()
 graph = {
     'A': ['B', 'C'],
     'B': ['D', 'G'],
@@ -29,6 +30,8 @@ def DFS(graph,node,visited = None):
         if neighbor not in visited:
             DFS(graph, neighbor, visited)
 
+end = time.perf_counter()
+print(end-start)
 
 DFS(graph, 'A')
 

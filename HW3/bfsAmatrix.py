@@ -4,6 +4,10 @@ Kiana Tarter
 Implementation of BFS on an adjacency matrix 
 '''
 from collections import deque
+import time
+import tracemalloc
+tracemalloc.start()
+
 
 graph = {
     '1': ['2', '3', '4'],
@@ -31,8 +35,9 @@ for x in graph:
         matrix[index[x]][index[y]] = 1
         matrix[index[y]][index[x]] = 1
 
-
+start = time.perf_counter()
 def BFS_matrix(matrix, nodes, src):
+    
     index = {node: i for i, node in enumerate(nodes)}
 
     visited = set([src])
@@ -51,9 +56,22 @@ def BFS_matrix(matrix, nodes, src):
                 if neighbor not in visited:
                     visited.add(neighbor)
                     q.append(neighbor)
-    return solution    
+    return solution  
+end = time.perf_counter() 
+
+ 
 
 def main():
+    elapsed_time = end - start
+    print(elapsed_time)
+
+    result = BFS_matrix(matrix, nodes, '1')
+
+    current, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+
+    print("Result:", result)
+    print("Memory (peak):", peak, "bytes")
     print(BFS_matrix(matrix, nodes, '1'))
 
 if __name__ == "__main__":

@@ -6,6 +6,10 @@ Implementation of BFS on graph B using an adjacency list
 '''
 from queue import Queue
 from collections import deque
+import time
+import tracemalloc
+tracemalloc.start()
+
 graph = {
     'A': ['B', 'C'],
     'B': ['D', 'G'],
@@ -25,7 +29,7 @@ graph = {
 
 }
 
-
+start = time.perf_counter()
 def BFS(graph, src):
     visited = set()
     q = deque([src])
@@ -44,7 +48,11 @@ def BFS(graph, src):
 
     return solution
 
+end = time.perf_counter()
+
 def main():
+    elp = end - start
+    print(elp)
     print(BFS(graph, 'A'))
 
 if __name__ == "__main__":

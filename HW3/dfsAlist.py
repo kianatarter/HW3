@@ -4,6 +4,7 @@ Kiana Tarter
 Implementation of DFS on graph A using an adjacency list
 
 '''
+import time
 graph = {
     '1': ['2', '3', '4'],
     '3': ['0', '1', '5'],
@@ -19,6 +20,7 @@ graph = {
     '11' : ['6', '9']
 }
 
+start = time.perf_counter()
 def DFS(graph,node,visited = None):
     if visited is None:
         visited = set()
@@ -30,5 +32,7 @@ def DFS(graph,node,visited = None):
         if neighbor not in visited:
             DFS(graph, neighbor, visited)
 
+end = time.perf_counter()
 
+print(end-start)
 DFS(graph, '1')
